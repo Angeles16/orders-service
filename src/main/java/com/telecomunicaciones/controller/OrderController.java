@@ -3,6 +3,7 @@ package com.telecomunicaciones.controller;
 import com.telecomunicaciones.persistencia.dto.OrderDto;
 import com.telecomunicaciones.persistencia.dto.OrderStatus;
 import com.telecomunicaciones.persistencia.entity.Order;
+import com.telecomunicaciones.persistencia.entity.OrderHistory;
 import com.telecomunicaciones.services.implement.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,9 @@ public class OrderController {
         Order updated = orderService.actualizarEstado(id, orderStatus);
         return ResponseEntity.ok(updated);
     }
-//
-//    @GetMapping("/{id}/history")
-//    public ResponseEntity<List<OrderHistory>> getOrderHistory(@PathVariable UUID id) {
-//        return ResponseEntity.ok(orderService.getOrderHistory(id));
-//    }
+
+    @GetMapping("/{id}/history")
+    public ResponseEntity<List<OrderHistory>> getOrderHistory(@PathVariable Long id) {
+        return ResponseEntity.ok(orderService.getOrderHistory(id));
+    }
 }

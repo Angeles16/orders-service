@@ -4,8 +4,8 @@ service:
 spring:
   datasource:
     url: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
-    username: SYSTEM
-    password: 1x2y3z
+    username: telecom_user
+    password: 123xyz
     driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:

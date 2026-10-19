@@ -1,5 +1,6 @@
 package com.telecomunicaciones.persistencia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telecomunicaciones.persistencia.dto.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,6 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "order_history")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@ToString(exclude = "order")         // <--- ¡Evita el bucle infinito en toString()!
+@EqualsAndHashCode(exclude = "order") // <--- ¡Evita el bucle en equals/hashCode!
 public class OrderHistory {
 
     @Id
@@ -16,6 +19,7 @@ public class OrderHistory {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonIgnore
     private Order order;
 
     @Enumerated(EnumType.STRING)
